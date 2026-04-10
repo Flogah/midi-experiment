@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://ds710ptqa20da"]
+
+[ext_resource type="Script" uid="uid://bd4psr0bkiy2c" path="res://Scenes/four_button_test.gd" id="1_5vah1"]
+[ext_resource type="AudioStream" uid="uid://b62j71qx041yf" path="res://Assets/SFX/freesound_community-metronome-85688.mp3" id="2_6ufkl"]
+
+[node name="4ButtonTest" type="Control" unique_id=1337709008]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5vah1")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1920018968]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -326.0
+offset_top = -292.0
+offset_right = 326.0
+offset_bottom = 189.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1094176497]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2134084404]
+layout_mode = 2
+
+[node name="Button1" type="Button" parent="PanelContainer/MarginContainer/GridContainer" unique_id=823844686]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "C3
+48"
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/GridContainer" unique_id=1605638743]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "D3
+50"
+
+[node name="Button3" type="Button" parent="PanelContainer/MarginContainer/GridContainer" unique_id=1270624563]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "E3
+52"
+
+[node name="Button4" type="Button" parent="PanelContainer/MarginContainer/GridContainer" unique_id=184953250]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "F3
+54"
+
+[node name="MetronomeAudioPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1797014684]
+unique_name_in_owner = true
+stream = ExtResource("2_6ufkl")
+
+[node name="CaptureToggle" type="Button" parent="." unique_id=1343164361]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 466.0
+offset_top = 527.0
+offset_right = 695.0
+offset_bottom = 604.0
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "CAPTURE"
+
+[node name="TimeSignBox" type="PanelContainer" parent="." unique_id=1640787823]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 533.0
+offset_right = 360.0
+offset_bottom = 573.0
+
+[node name="MarginContainer" type="MarginContainer" parent="TimeSignBox" unique_id=937676879]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TimeLabel" type="Label" parent="TimeSignBox/MarginContainer" unique_id=24080784]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TIME_SIGN"
+
+[node name="PatchInputBox" type="PanelContainer" parent="." unique_id=1650733828]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 523.0
+offset_right = 1080.0
+offset_bottom = 621.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PatchInputBox" unique_id=1470897098]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PatchInputBox/MarginContainer" unique_id=1410933594]
+layout_mode = 2
+
+[node name="LabelPatch" type="Label" parent="PatchInputBox/MarginContainer/VBoxContainer" unique_id=606108586]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Patch #"
+
+[node name="HScrollBarPatch" type="HScrollBar" parent="PatchInputBox/MarginContainer/VBoxContainer" unique_id=1014433530]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(360, 25)
+layout_mode = 2
+min_value = 1.0
+max_value = 150.0
+step = 1.0
+value = 1.0
+rounded = true
+
+[connection signal="value_changed" from="PatchInputBox/MarginContainer/VBoxContainer/HScrollBarPatch" to="." method="_on_h_scroll_bar_patch_value_changed"]

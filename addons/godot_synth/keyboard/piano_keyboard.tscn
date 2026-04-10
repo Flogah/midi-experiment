@@ -1,0 +1,581 @@
+[gd_scene format=3 uid="uid://cyndffxmsa4rn"]
+
+[ext_resource type="Script" uid="uid://n0quo1dyvxfv" path="res://addons/godot_synth/keyboard/synth_keyboard_player.gd" id="1_n5yr4"]
+[ext_resource type="Script" uid="uid://cwv0buggdocub" path="res://addons/godot_synth/keyboard/key_note.gd" id="3_d7j1h"]
+[ext_resource type="Theme" uid="uid://dmft0dpsjewks" path="res://addons/godot_synth/keyboard/piano_key_theme.tres" id="4_110ew"]
+
+[sub_resource type="ADSR" id="ADSR_25ggw"]
+
+[sub_resource type="ModulatedParameter" id="ModulatedParameter_atbcq"]
+mod_amount = 1.0
+source = SubResource("ADSR_25ggw")
+mod_type = 2
+
+[sub_resource type="ModulatedParameter" id="ModulatedParameter_0fark"]
+base_value = 0.11
+
+[sub_resource type="ModulatedParameter" id="ModulatedParameter_ef4au"]
+mod_min = -24.0
+mod_max = 24.0
+
+[sub_resource type="ModulatedParameter" id="ModulatedParameter_egihy"]
+base_value = 0.5
+
+[sub_resource type="VASynthConfiguration" id="VASynthConfiguration_wcv74"]
+waveform = 0.11
+waveform_modulation = SubResource("ModulatedParameter_0fark")
+amplitude_modulation = SubResource("ModulatedParameter_atbcq")
+pitch_modulation = SubResource("ModulatedParameter_ef4au")
+pulse_width_modulation = SubResource("ModulatedParameter_egihy")
+parameters = {
+"amplitude": SubResource("ModulatedParameter_atbcq"),
+"pitch": SubResource("ModulatedParameter_ef4au"),
+"pulse_width": SubResource("ModulatedParameter_egihy"),
+"waveform": SubResource("ModulatedParameter_0fark")
+}
+
+[node name="Control" type="CanvasLayer" unique_id=939541408]
+script = ExtResource("1_n5yr4")
+sound = SubResource("VASynthConfiguration_wcv74")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1423044320]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=242252131]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1024, 256)
+layout_mode = 2
+alignment = 1
+
+[node name="key_white_c" type="Control" parent="CenterContainer/HBoxContainer" unique_id=1935553677]
+custom_minimum_size = Vector2(24, 256)
+layout_mode = 2
+script = ExtResource("3_d7j1h")
+note = 48
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_white_c" unique_id=378528221]
+custom_minimum_size = Vector2(48, 256)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_white_c" unique_id=1846698406]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_black_c#" type="Control" parent="CenterContainer/HBoxContainer" unique_id=37192192]
+z_index = 1
+custom_minimum_size = Vector2(24, 186)
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("3_d7j1h")
+note = 49
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_black_c#" unique_id=84016498]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 186)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 186.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_black_c#" unique_id=2120516151]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_white_d" type="Control" parent="CenterContainer/HBoxContainer" unique_id=1038893616]
+custom_minimum_size = Vector2(24, 256)
+layout_mode = 2
+script = ExtResource("3_d7j1h")
+note = 50
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_white_d" unique_id=388282339]
+custom_minimum_size = Vector2(48, 256)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_white_d" unique_id=1639307014]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_black_d#" type="Control" parent="CenterContainer/HBoxContainer" unique_id=1321411589]
+z_index = 1
+custom_minimum_size = Vector2(24, 186)
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("3_d7j1h")
+note = 51
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_black_d#" unique_id=1714315732]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 186)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 186.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_black_d#" unique_id=1414553127]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_white_e" type="Control" parent="CenterContainer/HBoxContainer" unique_id=2060343134]
+custom_minimum_size = Vector2(24, 256)
+layout_mode = 2
+script = ExtResource("3_d7j1h")
+note = 52
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_white_e" unique_id=975972946]
+custom_minimum_size = Vector2(48, 256)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_white_e" unique_id=83729636]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_black_null_1" type="Control" parent="CenterContainer/HBoxContainer" unique_id=1428005379]
+z_index = 1
+custom_minimum_size = Vector2(24, 186)
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("3_d7j1h")
+note = 48
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_black_null_1" unique_id=296548469]
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 186)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 186.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_black_null_1" unique_id=488523176]
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_white_f" type="Control" parent="CenterContainer/HBoxContainer" unique_id=56981725]
+custom_minimum_size = Vector2(24, 256)
+layout_mode = 2
+script = ExtResource("3_d7j1h")
+note = 53
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_white_f" unique_id=784784397]
+custom_minimum_size = Vector2(48, 256)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_white_f" unique_id=386814102]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_black_f#" type="Control" parent="CenterContainer/HBoxContainer" unique_id=1947851864]
+z_index = 1
+custom_minimum_size = Vector2(24, 186)
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("3_d7j1h")
+note = 54
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_black_f#" unique_id=1456540574]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 186)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 186.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_black_f#" unique_id=1468091066]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_white_g" type="Control" parent="CenterContainer/HBoxContainer" unique_id=103941734]
+custom_minimum_size = Vector2(24, 256)
+layout_mode = 2
+script = ExtResource("3_d7j1h")
+note = 55
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_white_g" unique_id=731516516]
+custom_minimum_size = Vector2(48, 256)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_white_g" unique_id=1467304501]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_black_g#" type="Control" parent="CenterContainer/HBoxContainer" unique_id=765311181]
+z_index = 1
+custom_minimum_size = Vector2(24, 186)
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("3_d7j1h")
+note = 56
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_black_g#" unique_id=645166084]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 186)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 186.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_black_g#" unique_id=74745810]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_white_a" type="Control" parent="CenterContainer/HBoxContainer" unique_id=117820033]
+custom_minimum_size = Vector2(24, 256)
+layout_mode = 2
+script = ExtResource("3_d7j1h")
+note = 57
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_white_a" unique_id=13085538]
+custom_minimum_size = Vector2(48, 256)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_white_a" unique_id=1593422421]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_black_a#" type="Control" parent="CenterContainer/HBoxContainer" unique_id=1837053156]
+z_index = 1
+custom_minimum_size = Vector2(24, 186)
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("3_d7j1h")
+note = 58
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_black_a#" unique_id=800466581]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 186)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 186.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_black_a#" unique_id=1319120938]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_white_b" type="Control" parent="CenterContainer/HBoxContainer" unique_id=1425134263]
+custom_minimum_size = Vector2(24, 256)
+layout_mode = 2
+script = ExtResource("3_d7j1h")
+note = 59
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_white_b" unique_id=1517783164]
+custom_minimum_size = Vector2(48, 256)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_white_b" unique_id=448788668]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_black_null_3" type="Control" parent="CenterContainer/HBoxContainer" unique_id=46427037]
+z_index = 1
+custom_minimum_size = Vector2(24, 186)
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("3_d7j1h")
+note = 48
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_black_null_3" unique_id=513082385]
+visible = false
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(48, 186)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 186.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_black_null_3" unique_id=587799067]
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
+
+[node name="key_white_c2" type="Control" parent="CenterContainer/HBoxContainer" unique_id=1426768491]
+custom_minimum_size = Vector2(24, 256)
+layout_mode = 2
+script = ExtResource("3_d7j1h")
+note = 60
+
+[node name="button" type="Button" parent="CenterContainer/HBoxContainer/key_white_c2" unique_id=710071576]
+custom_minimum_size = Vector2(48, 256)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("4_110ew")
+
+[node name="key_label" type="Label" parent="CenterContainer/HBoxContainer/key_white_c2" unique_id=1658448805]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "C3"
+horizontal_alignment = 1
