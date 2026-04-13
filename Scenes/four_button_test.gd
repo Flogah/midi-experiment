@@ -3,6 +3,8 @@ extends Control
 var amy
 var patch: int = 121
 var starting_note: int = 60
+var target_scale: String = "f-moll"
+var notes = []
 
 var capture_dict_1: Dictionary = {}
 
@@ -28,6 +30,8 @@ var input_area:int = 0
 func _ready() -> void:
 	label_patch.text = "Patch # " + str(patch)
 	h_scroll_bar_patch.value = patch
+	
+	notes = get_octave()
 	
 	amy = Amy.new()
 	add_child(amy)
@@ -102,7 +106,7 @@ func joystick_input_mapping(input: Vector2):
 			#data["note"] = 0
 			#data["synth"] = 1
 			#play_note(data)
-			#input_area = new_input_area
+			input_area = new_input_area
 			return
 		
 		var data = {}
@@ -111,13 +115,11 @@ func joystick_input_mapping(input: Vector2):
 		data["synth"] = 1
 		play_note(data)
 		
-		
-		var notes = get_octave()
-		notes = apply_scale(notes, "f-moll")
+		var scaled_notes = apply_scale(notes, target_scale)
 		
 		var new_data = {}
 		new_data["vel"] = 0.8
-		new_data["note"] = notes[new_input_area]
+		new_data["note"] = scaled_notes[new_input_area]
 		new_data["synth"] = 1
 		input_area = new_input_area
 		play_note(new_data)
@@ -135,6 +137,7 @@ func play_note(data: Dictionary):
 	var note = data["note"]
 	var vel = data["vel"]
 	amy.send({"synth": synth, "patch": patch, "num_voices": 6, "note": note, "vel": vel})
+	print(note)
 	
 	if capture_mode:
 		capture_note(data)
@@ -182,36 +185,45 @@ func get_octave(start_note: int = starting_note) -> Array:
 	return octave
 
 func apply_scale(note_array: Array, scale: String) -> Array:
-	#for note in note_array:
-		#var remainder = note_array[note] % 12
-		#match remainder:
-			#0: pass # C
-			#1: pass # C#
-			#2: pass # D
-			#3: pass # D#
-			#4: pass # E
-			#5: pass # F
-			#6: pass # F#
-			#7: pass # G
-			#8: pass # G#
-			#9: pass # A
-			#10: pass # A#
-			#11: pass # H
-	
-	# f-moll
-	for note in note_array:
-		var remainder = note % 12
-		match remainder:
-			0: pass # C
-			1: pass # C#
-			2: pass # D
-			3: pass # D#
-			4: note -= 1 # E -> E-moll
-			5: pass # F
-			6: pass # F#
-			7: pass # G
-			8: pass # G#
-			9: note -= 1 # A -> A-moll
-			10: pass # A#
-			11: note -= 1 # H -> H-moll
-	return note_array
+	var new_array = note_array
+	match scale:
+		"d-moll":
+			# d - e - f - g - a - h-moll - c - d.
+			# shift base notes up or down
+			for note in note_array:
+				var remainder = note % 12
+				match remainder:
+					0: pass # C
+					1: pass # C#
+					2: pass # D
+					3: pass # D#
+					4: pass # E -> E-moll
+					5: pass # F
+					6: pass # F#
+					7: pass # G
+					8: pass # G#
+					9: pass # A -> A-moll
+					10: pass # A#
+					11: note -= 1 # H -> H-moll
+			# shift notes to the correct starting note
+			new_array = note_array.map(func(n): return n + 2) # C -> D
+		"f-moll":
+			for note in note_array:
+				var remainder = note % 12
+				match remainder:
+					0: pass # C
+					1: pass # C#
+					2: pass # D
+					3: pass # D#
+					4: note -= 1 # E -> E-moll
+					5: pass # F
+					6: pass # F#
+					7: pass # G
+					8: pass # G#
+					9: note -= 1 # A -> A-moll
+					10: pass # A#
+					11: note -= 1 # H -> H-moll
+			new_array = note_array.map(func(n): return n + 5) # C -> F
+		"test":
+			pass
+	return new_array
