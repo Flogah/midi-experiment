@@ -1,7 +1,7 @@
 extends Control
 
 var amy
-var patch: int = 144
+var patch: int = 121
 
 var capture_dict_1: Dictionary = {}
 
@@ -96,12 +96,12 @@ func joystick_input_mapping(input: Vector2):
 		return
 	else:
 		if new_input_area == 0:
-			var data = {}
-			data["vel"] = 0.0
-			data["note"] = 0
-			data["synth"] = 1
-			play_note(data)
-			input_area = new_input_area
+			#var data = {}
+			#data["vel"] = 0.0
+			#data["note"] = 0
+			#data["synth"] = 1
+			#play_note(data)
+			#input_area = new_input_area
 			return
 		
 		var data = {}
@@ -110,9 +110,30 @@ func joystick_input_mapping(input: Vector2):
 		data["synth"] = 1
 		play_note(data)
 		
+		var note = 54
+		
+		match new_input_area:
+			1:
+				note = 54 # f
+			2:
+				note = 56 # g
+			3:
+				note = 57 # a moll
+			4:
+				note = 59 # h moll
+			5:
+				note = 62 # c
+			6:
+				note = 63 # d moll
+			7:
+				note = 66 # e
+			8:
+				note = 68 # f
+		
+		
 		var new_data = {}
 		new_data["vel"] = 0.8
-		new_data["note"] = 47 + new_input_area
+		new_data["note"] = note
 		new_data["synth"] = 1
 		input_area = new_input_area
 		play_note(new_data)
@@ -141,6 +162,8 @@ func capture_note(data: Dictionary):
 func capture_mode_activation(toggle):
 	if toggle:
 		capture_toggle.text = str(4.0 - time_signature)
+		# start a new capture, so delete old capture
+		capture_dict_1 = {}
 		capture_mode = true
 	else:
 		capture_toggle.text = "CAPTURE"
