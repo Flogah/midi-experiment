@@ -2,6 +2,7 @@ extends Control
 
 var amy
 var patch: int = 121
+var starting_note: int = 60
 
 var capture_dict_1: Dictionary = {}
 
@@ -110,30 +111,13 @@ func joystick_input_mapping(input: Vector2):
 		data["synth"] = 1
 		play_note(data)
 		
-		var note = 54
 		
-		match new_input_area:
-			1:
-				note = 54 # f
-			2:
-				note = 56 # g
-			3:
-				note = 57 # a moll
-			4:
-				note = 59 # h moll
-			5:
-				note = 62 # c
-			6:
-				note = 63 # d moll
-			7:
-				note = 66 # e
-			8:
-				note = 68 # f
-		
+		var notes = get_octave()
+		notes = apply_scale(notes, "f-moll")
 		
 		var new_data = {}
 		new_data["vel"] = 0.8
-		new_data["note"] = note
+		new_data["note"] = notes[new_input_area]
 		new_data["synth"] = 1
 		input_area = new_input_area
 		play_note(new_data)
@@ -182,3 +166,52 @@ func metronome_tick():
 func _on_h_scroll_bar_patch_value_changed(value: float) -> void:
 	patch = value
 	label_patch.text = "Patch # " + str(patch)
+
+func get_octave(start_note: int = starting_note) -> Array:
+	var octave:Array[int] = [
+		0,
+		start_note,
+		start_note +2,
+		start_note +4,
+		start_note +8,
+		start_note +10,
+		start_note +12,
+		start_note +14,
+		start_note +16,
+	]
+	return octave
+
+func apply_scale(note_array: Array, scale: String) -> Array:
+	#for note in note_array:
+		#var remainder = note_array[note] % 12
+		#match remainder:
+			#0: pass # C
+			#1: pass # C#
+			#2: pass # D
+			#3: pass # D#
+			#4: pass # E
+			#5: pass # F
+			#6: pass # F#
+			#7: pass # G
+			#8: pass # G#
+			#9: pass # A
+			#10: pass # A#
+			#11: pass # H
+	
+	# f-moll
+	for note in note_array:
+		var remainder = note % 12
+		match remainder:
+			0: pass # C
+			1: pass # C#
+			2: pass # D
+			3: pass # D#
+			4: note -= 1 # E -> E-moll
+			5: pass # F
+			6: pass # F#
+			7: pass # G
+			8: pass # G#
+			9: note -= 1 # A -> A-moll
+			10: pass # A#
+			11: note -= 1 # H -> H-moll
+	return note_array
