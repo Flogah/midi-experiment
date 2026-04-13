@@ -26,6 +26,11 @@ var input_area:int = 0
 	#  1 | 0 | 5
 	#  8 | 7 | 6
 
+# newly simplified
+	#  4 | 5 | 4
+	#  3 | 0 | 3
+	#  2 | 1 | 2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label_patch.text = "Patch # " + str(patch)
@@ -75,27 +80,27 @@ func joystick_input_mapping(input: Vector2):
 	
 	if input.y < -deadzone:
 		if input.x < -deadzone:
-			new_input_area = 8
+			new_input_area = 4
 		elif input.x > -deadzone and input.x < deadzone:
-			new_input_area = 7
+			new_input_area = 5
 		elif input.x > deadzone:
-			new_input_area = 6
+			new_input_area = 4
 	
 	elif input.y > deadzone:
 		if input.x < -deadzone:
 			new_input_area = 2
 		elif input.x > -deadzone and input.x < deadzone:
-			new_input_area = 3
+			new_input_area = 1
 		elif input.x > deadzone:
-			new_input_area = 4
+			new_input_area = 2
 	
 	elif input.y < deadzone:
 		if input.x < -deadzone:
-			new_input_area = 1
+			new_input_area = 3
 		elif input.x > -deadzone and input.x < deadzone:
 			new_input_area = 0
 		elif input.x > deadzone:
-			new_input_area = 5
+			new_input_area = 3
 	
 	if new_input_area == input_area:
 		return
@@ -197,12 +202,12 @@ func apply_scale(note_array: Array, scale: String) -> Array:
 					1: pass # C#
 					2: pass # D
 					3: pass # D#
-					4: pass # E -> E-moll
+					4: pass # E
 					5: pass # F
 					6: pass # F#
 					7: pass # G
 					8: pass # G#
-					9: pass # A -> A-moll
+					9: pass # A
 					10: pass # A#
 					11: note -= 1 # H -> H-moll
 			# shift notes to the correct starting note
